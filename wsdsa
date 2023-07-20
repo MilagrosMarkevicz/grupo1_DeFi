@@ -1,0 +1,29 @@
+[33mcommit d8a5c3b2507082a2d80965fca57e5772041c265f[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;32mjuan[m[33m)[m
+Author: gnux28 <juamlopez42@gmail.com>
+Date:   Fri Jul 21 00:43:27 2023 -0300
+
+    subiendo app usuario
+
+[33mcommit ac9f703f82854d294d5cc1e59c576839d10ff0eb[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: gnux28 <juamlopez42@gmail.com>
+Date:   Thu Jul 20 00:06:45 2023 -0300
+
+    agregando requirements.txt
+
+[33mcommit 8942dd32dfb049cd76f4abdb5dddc1e03b722f6b[m
+Author: gnux28 <juamlopez42@gmail.com>
+Date:   Thu Jul 20 00:01:15 2023 -0300
+
+    agregango la linea en manage.py
+
+[33mcommit bc1779e9ebc963b00e3d1652f8a91cc13aaf5fc1[m
+Author: gnux28 <juamlopez42@gmail.com>
+Date:   Wed Jul 19 23:54:01 2023 -0300
+
+    agregando archivo ignore
+
+[33mcommit 95e703dbff49fb468b37d074bc2fbbfb25900aa8[m
+Author: gnux28 <juamlopez42@gmail.com>
+Date:   Wed Jul 19 23:49:33 2023 -0300
+
+    agregando carpeta settings
