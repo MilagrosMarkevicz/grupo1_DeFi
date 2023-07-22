@@ -8,6 +8,9 @@ def indexView(request):
 def usuarioView(request):
     return render(request, 'usuario.html', {})
 
+def contactoView(request):
+    return render(request, 'contacto.html', {})
+
 def registrarseView(request):
     return render(request, 'registrarse.html', {})
 
