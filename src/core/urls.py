@@ -4,6 +4,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('index/', views.indexView, name='index'),
+    path ('publicaciones/', views.publicacionesView, name='publicaciones'),
 ]
 
 urlpatterns += staticfiles_urlpatterns ()

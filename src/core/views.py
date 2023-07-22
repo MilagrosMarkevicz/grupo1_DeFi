@@ -4,3 +4,6 @@ from django.shortcuts import render
 
 def indexView(request):
     return render (request, 'index.html', {})
+
+def publicacionesView (request):
+    return render (request, 'publicaciones.html', {})
