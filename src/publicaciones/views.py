@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from typing import Any
 from django.db.models.query import QuerySet
 from django.forms.models import BaseModelForm
@@ -134,3 +135,8 @@ class BorrarComentarioView(SuperUsuarioAutorMixin, LoginRequiredMixin, DeleteVie
 
         def get_success_url(self):
             return reverse('publicaciones:detalle-post', args =[self.object.post.id])
+=======
+from django.shortcuts import render
+
+# Create your views here.
+>>>>>>> cd15e72e32af12862d36d4f127c991364e4d4009
