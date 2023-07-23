@@ -40,12 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 <<<<<<< HEAD
+<<<<<<< HEAD
     'Publicaciones',
 =======
     'core',
     'publicaciones',
     'usuario', 
 >>>>>>> cd15e72e32af12862d36d4f127c991364e4d4009
+=======
+>>>>>>> parent of 9bdf393 (Agrega funcionalidad de categorías a la app publicaciones)
 ]
 
 MIDDLEWARE = [
