@@ -24,11 +24,8 @@ urlpatterns = [
 
    
     
+  
+  
 
-    
-
-    
-
-    path("borrar-comentario/<int:pk>",views.BorrarComentario.as_views(),name="borrar-comentario")
     
 ]
