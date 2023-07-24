@@ -22,10 +22,5 @@ urlpatterns = [
 
     path('publicaciones-categoria/',views.VerPublicacionesPorCategoria.as_view(),name='publicaciones-por-categoria'),
 
-   
-    
-  
-  
-
-    
+       
 ]
