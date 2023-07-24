@@ -1,30 +1,35 @@
 from django import forms
-from.models import Publicaciones,Comentarios
+from.models import Publicaciones,Comentario
 
 
-class CrearPublicaciones(forms.ModelForm):
-    model=Publicaciones
-    fields=["titulo","categoria","post"]
-    labels={
-        "titulo":"",
-        "categoria":"",
-        "post":"",
+class CrearPublicacionForm(forms.ModelForm):
+    class Meta:
+     model=Publicaciones
+     fields=['categoria','titlo','post']
+     labels={
+        'titulo':'',
+        'post':'',
+        'categoria':'',
     }
 
     widgets={
                       
-            "titulo": forms.TextInput(attrs={"placeholder":"aca va el titulo","class":"form-control"}),
+            'titulo': forms.TextInput(attrs={'placeholder':'aca va el titulo','class':'form-control'}),
 
-            "categoria":forms.Select(attrs={"class":"form-select", "placeholder":"Categoria"}),
+             'post':forms.TextInput(attrs={'placeholder':'escribi algo...','class':'form-control'}),
 
-            "post":forms.TextInput(attrs={"placeholder":"escribi algo...","class":"form-control"}),
+            'categoria':forms.Select(attrs={'class':'form-select', 'placeholder':'Categoria'}),          
 
     }
 
 
 
-class Comentarioform(forms.ModelForm):
+class ComentarioForm(forms.ModelForm):
 
     class Meta:
-      model=Comentarios 
-      fields =  ["texto"]
+      model=Comentario
+      fields =  ['texto']
+
+    widgets = {
+        'texto' : forms.TextInput(attrs={'placeholder':'Escribe aqui tu comentario', 'class': 'form-control'}),
+    }
