@@ -10,3 +10,6 @@ def publicacionesView (request):
 
 def contactoView (request):
     return render (request, 'contacto.html', {}) 
+
+def pestaña_publicacionesView (request):
+    return render (request, 'pestaña_publicaciones.html', {})
