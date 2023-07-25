@@ -8,7 +8,7 @@ from .views import RegistroView, EliminarUsuario,EditarUsuario
 app_name= 'usuarios'
 
 urlpatterns=[
-    path('login/',LoginView.as_view(template_name = 'usuarios/login.html'),name = 'login'),
+    path('',LoginView.as_view(template_name = 'usuarios/login.html'),name = 'login'),
     path('logout/', LogoutView.as_view(next_page='../login'),name = 'logout'),
     path('registrarse/', RegistroView.as_view(),name = 'registrarse'),
     path('editar_usuario/<int:pk>', EditarUsuario.as_view(),name = 'editar_usuario'),
