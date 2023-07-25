@@ -18,6 +18,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath('src')))
 
 
+#redirigir el usuario
+LOGIN_REDIRECT_URL = 'index'
+
+#le digo a django que use mi modelo propio para los usuarios 
+
+AUTH_USER_MODEL = 'usuario.User'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -42,6 +49,7 @@ INSTALLED_APPS = [
     'core',
     'publicaciones',
     'usuario', 
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -101,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
