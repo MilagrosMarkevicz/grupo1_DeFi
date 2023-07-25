@@ -1,8 +1,8 @@
 @charset "UTF-8";
 /*!
-* Start Bootstrap - Blog Home v5.0.9 (https://startbootstrap.com/template/blog-home)
+* Start Bootstrap - Blog Post v5.0.9 (https://startbootstrap.com/template/blog-post)
 * Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-blog-home/blob/master/LICENSE)
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-blog-post/blob/master/LICENSE)
 */
 /*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
@@ -4205,6 +4205,7 @@ textarea.form-control-lg {
   padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
   color: var(--bs-card-color);
 }
+
 
 /* este es el login */
 
@@ -10842,4 +10843,11 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+
+/*! contacto */
+
+body {
+    background: #007bff;
+    background: linear-gradient(to right, #80B7FF, #EFF1FF);
 }

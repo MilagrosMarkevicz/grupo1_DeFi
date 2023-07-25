@@ -4206,6 +4206,26 @@ textarea.form-control-lg {
   color: var(--bs-card-color);
 }
 
+
+/* este es el login */
+
+.login {
+  min-height: 100vh;
+}
+
+
+.login-heading {
+  font-weight: 300;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
+
+/* aca termina */
+
 .card-title {
   margin-bottom: var(--bs-card-title-spacer-y);
 }
