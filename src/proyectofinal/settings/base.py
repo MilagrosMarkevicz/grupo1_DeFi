@@ -23,7 +23,7 @@ LOGIN_REDIRECT_URL = 'index'
 
 #le digo a django que use mi modelo propio para los usuarios 
 
-AUTH_USER_MODEL = 'usuario.User'
+AUTH_USER_MODEL = 'usuarios.User'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'publicaciones',
-    'usuario', 
+    'usuarios', 
     'bootstrap4',
 ]
 
