@@ -5,7 +5,7 @@ from.models import Publicaciones,Comentario
 class CrearPublicacionForm(forms.ModelForm):
     class Meta:
      model=Publicaciones
-     fields=['categoria','titlo','post']
+     fields=['categoria','titulo','post']
      labels={
         'titulo':'',
         'post':'',
