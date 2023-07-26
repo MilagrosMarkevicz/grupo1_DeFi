@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-from django.urls import reverse_lazy
+
 from pathlib import Path
 import os
 
@@ -17,13 +17,15 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath('src')))
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 #VARIABLES DEL LOGIN
 
 LOGIN_URL = '/usuarios/login/'
-LOGIN_REDIRECT_URL = reverse_lazy('../../publicaciones/publicaciones/')
+LOGIN_REDIRECT_URL = '/publicaciones/'
+
 
 AUTH_USER_MODEL = 'usuarios.User'
 
@@ -123,7 +125,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS =[
     os.path.join (BASE_DIR, 'src', 'static'),
-    os.path.join (BASE_DIR, 'src', 'template')
+    os.path.join (BASE_DIR, 'src', 'templates')
     ]
 
 # Default primary key field type
