@@ -1,6 +1,5 @@
 from django.urls import path, include
 from core import views
-from publicaciones import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
