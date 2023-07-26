@@ -1,3 +1,4 @@
+
 from django.contrib import admin
 from publicaciones.models import Publicaciones
 from publicaciones.models import Categoria
@@ -9,4 +10,3 @@ admin.site.register(Publicaciones)
 admin.site.register(Categoria)
 admin.site.register(Comentario)
 
-# Register your models here.
