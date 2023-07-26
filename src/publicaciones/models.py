@@ -19,7 +19,7 @@ class Publicaciones(models.Model):
     titulo = models.CharField(max_length= 255)
     post = models.TextField()
     categoria = models.ForeignKey(Categoria, on_delete= models.SET_NULL, related_name= 'posteos', null = True)
-    creador = models.ForeignKey(User, on_delete= models.CASCADE, related_name= 'posteos_usuario')
+    creador = models.ForeignKey(User, on_delete=models.CASCADE, related_name='publicaciones_creador')
 
     def __str__(self):
         return self.titulo
@@ -29,7 +29,7 @@ class Comentario(models.Model):
     texto = models.TextField()
     fecha = models.DateField(auto_now_add= True)
     post = models.ForeignKey(Publicaciones, on_delete= models.CASCADE, related_name= 'comentarios')
-    autor = models.ForeignKey(User, on_delete= models.CASCADE, related_name= 'comentarios')
+    autor = models.ForeignKey(User, on_delete= models.CASCADE, related_name= 'comentarios_autor')
 
 
     def __str__(self):
