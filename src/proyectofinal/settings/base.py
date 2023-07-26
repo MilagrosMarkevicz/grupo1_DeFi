@@ -20,6 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath('src')))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
+#VARIABLES DEL LOGIN
+
+LOGIN_URL = '/usuarios/login/'
+LOGIN_REDIRECT_URL = '../../publicaciones/publicaciones/'
+
+AUTH_USER_MODEL = 'usuarios.User'
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-p47_$+olajx#1uvzb1!b!j87#$_##bf@!bha_95@y%c!%@gf2u'
 
