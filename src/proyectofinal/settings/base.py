@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+from django.urls import reverse_lazy
 from pathlib import Path
 import os
 
@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath('src')))
 #VARIABLES DEL LOGIN
 
 LOGIN_URL = '/usuarios/login/'
-LOGIN_REDIRECT_URL = '../../publicaciones/publicaciones/'
+LOGIN_REDIRECT_URL = reverse_lazy('../../publicaciones/publicaciones/')
 
 AUTH_USER_MODEL = 'usuarios.User'
 
@@ -66,7 +66,7 @@ ROOT_URLCONF = 'proyectofinal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['template'],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
