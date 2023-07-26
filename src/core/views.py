@@ -13,3 +13,6 @@ def contactoView (request):
 
 def publicacionesView (request):
     return render (request, 'publicaciones.html', {})
+
+def defiView (request):
+    return render (request, 'defi.html')
