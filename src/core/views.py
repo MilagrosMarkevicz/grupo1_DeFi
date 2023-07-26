@@ -11,5 +11,5 @@ def postView (request):
 def contactoView (request):
     return render (request, 'contacto.html', {}) 
 
-def pestaña_publicacionesView (request):
-    return render (request, 'pestaña_publicaciones.html', {})
+def publicacionesView (request):
+    return render (request, 'publicaciones.html', {})

@@ -7,7 +7,7 @@ urlpatterns = [
     path ('post/', views.postView, name='post'),
     path ('contacto/', views.contactoView, name= 'contacto'),
     path('usuarios/', include('usuarios.urls')),
-    path('pestaña_publicaciones/', views.pestaña_publicacionesView, name='pestaña_publicaciones'),
+    path('publicaciones/', views.publicacionesView, name='publicaciones'),
 ]
 
 urlpatterns += staticfiles_urlpatterns ()
