@@ -1,5 +1,6 @@
 from django.urls import path
 from publicaciones import views
+from .views import VerPublicaciones, Postear, EditarPost, EliminarPost, PostDetalle, BorrarComentarioView, VerPublicacionesOrdenAlfabetico, VerPublicacionesOrdenAlfabeticoDesc, VerPublicacionesPorCategoria
 
 app_name= 'publicaciones'
 
@@ -21,11 +22,4 @@ urlpatterns = [
     path('publicaciones-ordenadas-desc/',views.VerPublicacionesOrdenAlfabeticoDesc.as_view(),name='publicaciones-ordenadas-desc'),
 
     path('publicaciones-categoria/',views.VerPublicacionesPorCategoria.as_view(),name='publicaciones-por-categoria'),
-
-   
-    
-  
-  
-
-    
 ]
