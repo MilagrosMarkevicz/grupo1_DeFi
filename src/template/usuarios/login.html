@@ -1,10 +1,89 @@
-<h2>iniciar sesion</h2>
-     <form method="post"> {% csrf_token %}
-       
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inicio de Sesión</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
 
-      {{ form.as_p }}
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-     <button type="submit">Iniciar sesion</button>
-     <a href="{% url 'usuarios:registrarse' %}" class="btn btn-secondary">Registrarse</a>
+        h2 {
+            text-align: center;
+            color: #555;
+        }
 
-    </form>
+        form {
+            margin-top: 20px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-size: 20px; /* Tamaño de fuente aumentado */
+        }
+
+        form input[type="text"],
+        form input[type="password"] {
+            width: 75%; /* Ancho al 100% para ocupar todo el espacio disponible */
+            padding: 10px;
+            margin-bottom: 10px; /* Reducido el margen inferior para separar menos los elementos */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #0062E6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form button[type="submit"]:hover {
+            background-color: #000dc9;
+        }
+
+        .register-link {
+            display: block;
+            text-align: center;
+            color: #333;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+
+        .register-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Iniciar Sesión</h2>
+        <form method="post"> {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Usuario</label>
+                {{ form.username }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.password.id_for_label }}">Contraseña</label>
+                {{ form.password }}
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+        <a href="{% url 'usuarios:registrarse' %}" class="register-link">Registrarse</a>
+    </div>
+</body>
+</html>
