@@ -1,10 +1,9 @@
 from django.shortcuts import render
 
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from .forms import RegistrarseFrom
 
-from django.contrib.auth.forms import UserCreationForm
 
 from .models import User
 
@@ -14,13 +13,11 @@ from django.contrib.auth import login
 
 from django.urls import reverse
 
-from django.contrib.auth.views import LoginView
+from .forms import EditarUserForm
 
 
 # Create your views here.
 
-class LoginUsuario(LoginView):
-    template_name = 'usuarios/login.html'
 
 
 class RegistroView(CreateView):
@@ -43,11 +40,26 @@ class RegistroView(CreateView):
 
 
 
-
-class EliminarUsuario(DeleteView, LoginRequiredMixin):
-    template_name = 'usuarios/eliminar_usuario.html'
-
+class EditarUsuario(UpdateView, LoginRequiredMixin):
     model = User
 
+    template_name = 'usuarios/editar_usuario.html'
+
+    form_class = EditarUserForm
+
+
+    def form_valid(self, form):
+
+        respuesta = super().form_valid(form)
+        usuario = form.save()
+
+        login(self.request,usuario)
+
+        return respuesta
+
+
     def get_success_url(self):
-        return reverse('usuarios:login')
+        return reverse('index')
+
+
+
