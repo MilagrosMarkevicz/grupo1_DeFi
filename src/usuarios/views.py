@@ -6,7 +6,7 @@ from .forms import RegistrarseFrom
 
 from django.contrib.auth.forms import UserCreationForm
 
-from django.contrib.auth.models import User
+from .models import User
 
 from django.contrib.auth.mixins import LoginRequiredMixin 
 
@@ -31,29 +31,17 @@ class RegistroView(CreateView):
         return reverse ('index')
 
 
-class EditarUsuario(UpdateView, LoginRequiredMixin):
-    model = User
-
-    template_name = 'usuarios/editar_usuario.html'
-
-    form_class = UserCreationForm
-    
-
-
-
-    def form_valid(self, form):
+    def form_valid(self,form):
 
         respuesta = super().form_valid(form)
+
         usuario = form.save()
 
-        login(self.request,usuario)
+        login(self.request, usuario)
 
         return respuesta
 
 
-    def get_success_url(self):
-        return reverse('index')
-    
 
 
 class EliminarUsuario(DeleteView, LoginRequiredMixin):

@@ -27,7 +27,15 @@
                         <li class="nav-item"><a class="nav-link" href="#!">Publicaciones</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Acerca de</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contacto</a></li>
+                        
+                        {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'usuarios:logout' %}">logout</a></li>
+
+                        {% else %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'usuarios:login' %}">login</a></li>
+                        {% endif %}
+                            
+                        
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
                     </ul>
                 </div>
