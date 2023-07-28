@@ -63,3 +63,4 @@ class EliminarUsuario(DeleteView, LoginRequiredMixin):
 
     def get_success_url(self):
         return reverse('usuarios:login')
+    

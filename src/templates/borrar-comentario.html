@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- ... Rest of the head ... -->
+    </head>
+    <body>
+        <!-- Responsive navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <!-- ... Rest of the navbar ... -->
+        </nav>
+
+        <!-- Page content -->
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Post content -->
+                    <article>
+                        <!-- ... Rest of the article ... -->
+                    </article>
+                    <!-- Comments section -->
+                    <section class="mb-5">
+                        <!-- ... Rest of the comments section ... -->
+
+                        <!-- Formulario para eliminar un comentario -->
+                        <form method="post">
+                            {% csrf_token %}
+                            <p>Estas a punto de eliminar el comentario</p>
+                            <button type="submit" class="custom-button">Eliminar</button>
+                        </form>
+                    </section>
+                </div>
+                <!-- Side widgets -->
+                <div class="col-lg-4">
+                    <!-- ... Rest of the side widgets ... -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+        </footer>
+        <!-- Bootstrap core JS -->
+        <script src=""></script>
+        <!-- Core theme JS -->
+        <script src="{% static 'js/scripts.js'%}"></script>
+    </body>
+</html>

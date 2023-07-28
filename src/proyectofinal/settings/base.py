@@ -24,7 +24,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath('src')))
 #VARIABLES DEL LOGIN
 
 LOGIN_URL = '/usuarios/login/'
-LOGIN_REDIRECT_URL = '/publicaciones/'
 
 
 AUTH_USER_MODEL = 'usuarios.User'
