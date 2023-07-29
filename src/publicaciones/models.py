@@ -1,5 +1,7 @@
 from django.db import models
 from usuarios.models import User
+# from django.contrib.auth.models import User
+from django.urls import reverse
 # Create your models here.
 
 #Esta clase crea una tabla para las categorías
@@ -10,7 +12,8 @@ class Categoria(models.Model):
     def __str__(self):
         return self.nombre
 
-
+    def get_absolute_url(self):
+        return reverse('publicaciones:publicaciones')
 
 #Esta clase crea una tabla para las publicaciones
 class Publicaciones(models.Model):
@@ -18,11 +21,16 @@ class Publicaciones(models.Model):
     update = models.DateField(auto_now = True)
     titulo = models.CharField(max_length= 255)
     post = models.TextField()
-    categoria = models.ForeignKey(Categoria, on_delete= models.SET_NULL, related_name= 'posteos', null = True)
+# categoria = models.CharField(Categoria, on_delete= models.SET_NULL, related_name= 'posteos', null = True)
+    categoria = models.CharField(max_length=255, default='')
     creador = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posteos_creador')
-
+    
     def __str__(self):
-        return self.titulo
+        return self.titulo + '-' + self.creador
+    
+    def get_absolute_url(self):
+        return reverse('publicaciones')
+        
     
 
 class Comentario(models.Model):
@@ -32,7 +40,9 @@ class Comentario(models.Model):
     autor = models.ForeignKey(User, on_delete= models.CASCADE, related_name= 'comentarios_autor')
 
 
-    def __str__(self):
+def __str__(self):
         return self.post.titulo + '-' + self.autor.first_name
 
 
+    
+        

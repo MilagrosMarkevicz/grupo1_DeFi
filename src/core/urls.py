@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.indexView, name = 'index'),
     path('publicaciones/', include('publicaciones.urls')),
     path('usuarios/', include('usuarios.urls')),
+    path('contacto/', views.contactoView, name = 'contacto'),
 ]
 
 urlpatterns += staticfiles_urlpatterns ()

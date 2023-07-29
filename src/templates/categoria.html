@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block contenido %}
+<h1>{{categorias}}</h1>
+
+<ul>
+{% for post in categoria_publicaciones  %}
+<div class="card m-5">
+    <div class="card-header">
+      {{post.fecha}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{post.titulo}}</h5>
+      <p class="card-text">{{post.post|truncatechars:400}}</p>
+      <p class="card-text">{{post.categoria}}</p>
+      <p class="card-text">{{post.creador}}</p>
+      
+
+      {% if user.is_superuser or user == user.es_colaborador %}
+      <a href="{% url 'publicaciones:editar-post' post.pk %}" class="custom-button">Editar posteo!</a>
+      <a href="{% url 'publicaciones:eliminar-post' post.pk %}" class="custom-button">Eliminar posteo!</a>
+      <a href="{% url 'publicaciones:postear' post.pk %}" class="custom-button"> Postear!</a>
+      {% endif %}
+    </div>
+</div>
+{% endfor %}
+</ul> 
+categoria_publicaciones
+
+
+{% endblock contenido %}
+    

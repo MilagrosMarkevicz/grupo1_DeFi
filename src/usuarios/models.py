@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     telefono = models.CharField(max_length=20)
-    es_admin = models.BooleanField(default=False) 
+    es_colaborador = models.BooleanField(default=False) 
     groups = models.ManyToManyField(
         'auth.Group',
         related_name='usuarios_custom',

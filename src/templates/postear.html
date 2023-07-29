@@ -1,68 +1,26 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <!-- ... Rest of the head ... -->
-    </head>
-    <body>
-        <!-- Responsive navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <!-- ... Rest of the navbar ... -->
-        </nav>
+{% block contenido %}
+    
 
-        <!-- Page content -->
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-lg-8">
-                    <!-- Post content -->
-                    <article>
-                        <!-- ... Rest of the article ... -->
-                    </article>
-                    <!-- Comments section -->
-                    <section class="mb-5">
-                        <!-- ... Rest of the comments section ... -->
-                    </section>
-                </div>
-                <!-- Side widgets -->
-                <div class="col-lg-4">
-                    <!-- Search widget -->
-                    <div class="card mb-4">
-                        <!-- ... Rest of the search widget ... -->
-                    </div>
-                    <!-- Categories widget -->
-                    <div class="card mb-4">
-                        <!-- ... Rest of the categories widget ... -->
-                    </div>
-                    <!-- Side widget -->
-                    <div class="card mb-4">
-                        <!-- ... Rest of the side widget ... -->
-                    </div>
+        <!-- Formulario para crear una nueva publicación -->
+    
+        <h5>PUBLICAR</h5>
 
-                    <!-- Formulario para crear una nueva publicación -->
-                    <h2>PUBLICAR</h2>
-                    <form method="post">
+        <div class="form-group">
+            <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="submit" class="btn btn-dark">Postear!</button>
-                    </form>
-
-                    <!-- Lista de publicaciones -->
-                    {% for publicacion in posteos %}
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ publicacion.titulo }}</h5>
-                                <p class="card-text">{{ publicacion.contenido }}</p>
-                                <!-- Botones para ver, editar y eliminar publicación -->
-                                <a href="{% url 'publicaciones:detalle-post' publicacion.id %}" class="btn btn-info">Ver</a>
-                                <a href="{% url 'publicaciones:editar-post' publicacion.id %}" class="btn btn-warning">Editar</a>
-                                <a href="{% url 'publicaciones:eliminar-post' publicacion.id %}" class="btn btn-danger">Eliminar</a>
-                            </div>
-                        </div>
-                    {% endfor %}
+                        <button class="btn btn-secondary">Publicar</button>
                 </div>
-            </div>
-        </div>
+
+   
+        <!-- <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-dark">Postear!</button>
+        </form> -->
 
         <!-- Footer -->
         <footer class="py-5 bg-dark">
@@ -74,3 +32,4 @@
         <script src="{% static 'js/scripts.js'%}"></script>
     </body>
 </html>
+{% endblock contenido %}

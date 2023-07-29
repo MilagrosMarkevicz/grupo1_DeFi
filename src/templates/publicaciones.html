@@ -1,24 +1,32 @@
+{% extends 'base.html' %}
 {% load static %}
+{% block extra %}
+  
+<li class="nav-item"><a class="nav-link" href="{% url 'publicaciones:agregar_categoria' %}">Agregar Categorias</a></li>
+                   
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Categorias
+    </button>
+    <ul class="dropdown-menu">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/post.css' %}">
-    <title>Blog Post - Start Bootstrap Template</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{% static 'css/post.css' %}" rel="stylesheet" />
-</head>
-<body>
-    <!-- Responsive navbar-->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <!-- ... Navbar content ... -->
-    </nav>
+        
+{% for categoria in menu_categoria %}
+    <a class="dropdown-item" href="#">{{ categoria }}</a>
+    {% endfor %}    
+</ul>
+
+</div>
+
+{% endblock extra %}
+
+{% block contenido %}
+
+
+
+<a class="btn btn-primary" href="{% url 'publicaciones:postear' %}" role="button">Publicar</a>
+
+
 
     <!-- Page content-->
     <div class="container mt-5">
@@ -29,23 +37,26 @@
                         <h2>PUBLICACIONES</h2>
 
                        {% for post in posteos %}
-                        <div class="card m-5">
-                            <div class="card-header">
-                              {{post.fecha}}
-                            </div>
-                            <div class="card-body">
-                              <h5 class="card-title">{{post.titulo}}</h5>
-                              <p class="card-text">{{post.post}}</p>
-                              <p class="card-text">{{post.categoria}}</p>
-                              <p class="card-text">{{post.creador}}</p>
-                              <a href="{% url 'publicaciones:detalle-post' post.id %}" class="custom-button">Indagar en profundidad!</a>
 
-                              {% if user.is_superuser or user == post.creador %}
-                              <a href="{% url 'publicaciones:editar-post' post.id %}" class="custom-button">Editar posteo!</a>
-                              <a href="{% url 'publicaciones:eliminar-post' post.id %}" class="custom-button">Eliminar posteo!</a>
-                              {% endif %}
-                            </div>
+                       <div class="card m-5">
+                        <div class="card-header">
+                          {{post.fecha}}
                         </div>
+                       <div class="card mb-3">
+                        <img src="https://i0.wp.com/criptotendencia.com/wp-content/uploads/2023/03/DeFi.jpg?resize=890%2C450&ssl=1" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">{{post.titulo}}</h5>
+                          <p class="card-text">{{post.post|truncatechars:400}}</p>
+                          <p class="card-text">Categoría: {{post.categoria}}</p>
+                  
+                          <p class="card-text"><small class="text-body-secondary">Creado por: {{post.creador}}</small></p>
+                          <a class="btn btn-primary" href="{% url 'publicaciones:detalle-post' post.pk %}" role="button">Detalles</a>
+                         {% if user.is_superuser or user == user.es_colaborador %}
+                              <a class="btn btn-outline-secondary" href="{% url 'publicaciones:editar-post' post.pk %}" role="button">Editar</a>
+                              <a class="btn btn-outline-danger" href="{% url 'publicaciones:eliminar-post' post.pk %}" role="button">Eliminar</a>
+                   
+                              {% endif %}
+                           
                         {% endfor %} 
                     </div> 
                 </article>
@@ -63,5 +74,14 @@
     <script src=""></script>
     <!-- Core theme JS -->
     <script src="{% static 'js/scripts.js'%}"></script>
-</body>
-</html>
+
+    
+
+    {% endblock contenido %}
+
+        
+    
+
+
+       
+ 

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+
+
+	<h1>Agregar Categoria</h1>
+	<br/><br/>
+
+	<div class="form-group">
+		<form method="POST">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button class="btn btn-secondary">Agregar</button>
+	</div>
+
+
+
+
+
+
+{% endblock contenido %}
+    
