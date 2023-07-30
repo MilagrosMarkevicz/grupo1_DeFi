@@ -16,3 +16,15 @@ def publicacionesView (request):
 
 def defiView (request):
     return render (request, 'defi.html')
+
+def blockView (request):
+    return render (request, 'blockchains.html', {})
+
+def nosotrosView (request):
+    return render (request, 'nosotros.html', {})
+
+def tokensView (request):
+    return render (request, 'tockens.html', {})
+
+def tradingView (request):
+    return render (request, 'trading.html', {})
