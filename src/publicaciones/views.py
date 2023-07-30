@@ -1,139 +1,124 @@
-from django.shortcuts import render
-
-# Create your views here.
-from typing import Any
-from django.db.models.query import QuerySet
-from django.forms.models import BaseModelForm
-from django.http import HttpResponse
-from django.shortcuts import render
-from publicaciones.models import Publicaciones, Categoria
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-from .forms import CrearPublicacionForm, ComentarioForm, Comentario
 from django.urls import reverse
+from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from core.mixins import SuperUsuarioAutorMixin, ColaboradorMixin
-from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404 
-# Create your views here.
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from .models import Publicaciones, Comentario, Categoria
+from .forms import PostForm, ComentarioForm
+from core.mixins import  ColaboradorMixin,SuperusuarAutorMixin
+from django.db.models import Q
 
 # View basada en una clase que renderiza las publicaciones
-
-class VerPublicaciones(LoginRequiredMixin ,ListView):
+class VerPublicaciones(ListView):
     model = Publicaciones
-    template_name = 'publicaciones/publicaciones.html'
+    template_name = 'publicaciones.html'
     context_object_name = 'posteos'
+    cats = Categoria.objects.all()
+                
+    def get_context_data(self, *args, **kwargs):
+        menu_categoria = Categoria.objects.all()
+        contexto = super(VerPublicaciones, self).get_context_data(*args, **kwargs)
+        contexto["menu_categoria"] = menu_categoria
+        return contexto
+        
+def categoriaListView(request):
+    menu_categoria_list = Categoria.objects.all()
+    return render(request, 'categoria_list.html', {'menu_categoria_list':menu_categoria_list})
 
+def categoriaView(request, cats):
+    category_posts = Publicaciones.objects.filter(category=cats.replace('-', ' '))
+    return render(request, 'categories.html', {'cats':cats.replace('-', ' ').title(), 'category_posts':category_posts})
 
-    def get_queryset(self):
-        consulta_anterior = super().get_queryset()
-
-        consulta_ordenada = consulta_anterior.order_by('fecha')
-        return consulta_ordenada
-
-class VerPublicacionesPorCategoria(LoginRequiredMixin, ListView):
-    template_name = 'publicaciones/publicaciones.html'
-    context_object_name = 'posteos'
-
-    def publicaciones_por_categoria(request, categoria_id):
-        categoria = get_object_or_404(Categoria, id=categoria_id)
-        publicaciones = Publicaciones.objects.filter(categoria=categoria)
-        return render(request, 'publicaciones_por_categoria.html', {'categoria': categoria, 'publicaciones': publicaciones})
-
-    def get_queryset(self):
-        categoria = get_object_or_404(Categoria, nombre=self.kwargs['nombre_categoria'])
-        consulta_anterior = Publicaciones.objects.filter(categoria=categoria)
-        consulta_ordenada = consulta_anterior.order_by('-fecha')  # Ordenar por antigüedad descendente
-        return consulta_ordenada
-
-class VerPublicacionesOrdenAlfabetico(LoginRequiredMixin, ListView):
-    template_name = 'publicaciones/publicaciones.html'
-    context_object_name = 'posteos'
-
-    def get_queryset(self):
-        consulta_anterior = Publicaciones.objects.all()
-        consulta_ordenada = consulta_anterior.order_by('titulo')  # Ordenar por título ascendente
-        return consulta_ordenada
-
-class VerPublicacionesOrdenAlfabeticoDesc(LoginRequiredMixin, ListView):
-    template_name = 'publicaciones/publicaciones.html'
-    context_object_name = 'posteos'
-
-    def get_queryset(self):
-        consulta_anterior = Publicaciones.objects.all()
-        consulta_ordenada = consulta_anterior.order_by('-titulo')  # Ordenar por título descendente
-        return consulta_ordenada
-
-
-# View que crea posteos nuevos
-
-class Postear(ColaboradorMixin, LoginRequiredMixin, CreateView):
-    model = Publicaciones
-    template_name = 'publicaciones/postear.html'
-    form_class = CrearPublicacionForm
-
-    def get_success_url(self):
-        return reverse('publicaciones:publicaciones')
-    
-    def form_valid(self, form):
-        f = form.save(commit= False) #Le paré el carro al form para que no guarde todavía.
-        f.creador_id = self.request.user.id
-        return super().form_valid(f)
-    
-# View que actualiza una publicacion ya existente
-
-class EditarPost(SuperUsuarioAutorMixin, LoginRequiredMixin, UpdateView):
-    model = Publicaciones
-    template_name = 'Publicaciones/editar-post.html'
-    form_class = CrearPublicacionForm
-
-    def get_success_url(self):
-        return reverse('publicaciones:publicaciones')
-    
-# View que elimina un posteo
-
-class EliminarPost(SuperUsuarioAutorMixin, LoginRequiredMixin, DeleteView):
-    template_name = 'publicaciones/eliminar-post.html'
-    model = Publicaciones
-    
-    def get_success_url(self):
-        return reverse('publicaciones:publicaciones')
 
 # View que permite ver los detalles de una publicacion
-
 class PostDetalle(LoginRequiredMixin, DetailView):
-    template_name = 'publicaciones/detalle-post.html'
+    template_name = 'detalle-post.html'
     model = Publicaciones
     context_object_name = 'post'
 
-# Método get 
-
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['formulario_comentario'] = ComentarioForm()
-        return context
+        menu_categoria = Categoria.objects.all()
+        contexto = super().get_context_data(**kwargs)
+        contexto['formulario_comentario'] = ComentarioForm()
+        contexto["menu_categoria"] = menu_categoria
+        return contexto
 
-    def post(self, request, *args, **kwargs):
-
+    def post(self, request, pk):
         if not self.request.user.is_authenticated:
             return reverse('usuarios:login')
-    
-        
+
         publicacion = self.get_object()
         form = ComentarioForm(request.POST)
 
         if form.is_valid():
-            comentario = form.save(commit= False)
-            comentario.autor_id = self.request.user.id
+            comentario = form.save(commit=False)
+            comentario.autor = self.request.user
             comentario.post = publicacion
             comentario.save()
-            return super().get(request)
-        else:
-            return super().get(request)
+        return super().get(request)
+
+class AgregarCategoriaView(CreateView):
+	model = Categoria
+	template_name = 'agregar_categoria.html'
+	fields = '__all__' 
         
+# View que crea posteos nuevos
+class Postear(SuperusuarAutorMixin, ColaboradorMixin, LoginRequiredMixin, CreateView):
+    model = Publicaciones
+    template_name = 'postear.html'
+    form_class = PostForm
+    
+    def get_success_url(self):
+        return reverse('publicaciones:postear.html')
+    
+    def form_valid(self, form):
+        f = form.save(commit=False)
+        f.creador_id = self.request.user.id
+        return super().form_valid(f)
+       
+   
+class PostearView(CreateView):
+        
+    def get(self, request):
+        form = PostForm()
+        return render(request, 'postear.html', {'form': form})
 
-class BorrarComentarioView(SuperUsuarioAutorMixin, LoginRequiredMixin, DeleteView):
-        model = Comentario
-        template_name = 'publicaciones/borrar-comentario.html'
+    def post(self, request):
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.creador_id = request.user.id
+            post.save()
+            return redirect('publicaciones:publicaciones')
+        return render(request, 'postear.html', {'form': form})
 
-        def get_success_url(self):
-            return reverse('publicaciones:detalle-post', args =[self.object.post.id])
+
+#	model = Publicaciones
+#	form_class = PostForm
+#	template_name = 'postear.html'
+#	#fields = ('title', 'body')
+
+# View que actualiza una publicacion ya existente
+class EditarPost(ColaboradorMixin,LoginRequiredMixin, SuperusuarAutorMixin,UpdateView):
+    model = Publicaciones
+    template_name = 'editar-post.html'
+    form_class = PostForm
+
+    def get_success_url(self):
+        return reverse('publicaciones:publicaciones')
+
+# View que elimina un posteo
+class EliminarPost(LoginRequiredMixin, SuperusuarAutorMixin,DeleteView):
+    template_name = 'eliminar-post.html'
+    model = Publicaciones
+
+    def get_success_url(self):
+        return reverse('publicaciones:publicaciones')
+
+
+
+class BorrarComentarioView(ColaboradorMixin, LoginRequiredMixin, SuperusuarAutorMixin,DeleteView):
+    model = Comentario
+    template_name = 'borrar-comentario.html'
+
+    def get_success_url(self):
+        return reverse('publicaciones:detalle-post', args=[self.object.post.id])
