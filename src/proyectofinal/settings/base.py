@@ -21,6 +21,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath('src')))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
+#VARIABLES DEL LOGIN
+
+LOGIN_URL = '/usuarios/login/'
+
+
+AUTH_USER_MODEL = 'auth.User'
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-p47_$+olajx#1uvzb1!b!j87#$_##bf@!bha_95@y%c!%@gf2u'
 
@@ -41,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'publicaciones',
-    'usuario', 
+    'usuarios',
+    'bootstrap4', 
 ]
 
 MIDDLEWARE = [
@@ -59,7 +67,7 @@ ROOT_URLCONF = 'proyectofinal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['template'],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -116,11 +124,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS =[
     os.path.join (BASE_DIR, 'src', 'static'),
-    os.path.join (BASE_DIR, 'src', 'template')
-                   ]
+    os.path.join (BASE_DIR, 'src', 'templates')
+    ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'

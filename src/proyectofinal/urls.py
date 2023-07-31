@@ -16,8 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from usuarios.views import ShowProfilePageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('core.urls'))
+    path('', include('core.urls')),
+    path('<int:pk>/profile/', ShowProfilePageView.as_view(), name='show_profile_page'),
 ]
+

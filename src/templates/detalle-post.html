@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block contenido %}
+    
+
+                        <div class="card m-5">
+                            <div class="card-header">
+                              {{post.fecha}}
+                            </div>
+                            <div class="card-body">
+                              <h5 class="card-title">{{post.titulo}}</h5>
+                              <p class="card-text">{{post.post}}</p>
+                              <p class="card-text">{{post.categoria}}</p>
+                              <p class="card-text">{{post.creador}}</p>
+                              
+
+                              {% if user.is_staff %}
+                              <a class="btn btn-outline-secondary" href="{% url 'publicaciones:editar-post' post.pk %}" role="button">Editar</a>
+                              <a class="btn btn-outline-danger" href="{% url 'publicaciones:eliminar-post' post.pk %}" role="button">Eliminar</a>
+                       
+                              {% endif %}
+                            </div>
+                        </div>
+                    
+
+<!-- Comentarios -->
+
+                   
+<div class="comentario-container">
+    <h2>Comentarios</h2>
+     <ul>
+    {% for comentario in post.comentarios.all %}
+    <div class="card">
+        <div class="card-body">
+            {{ comentario.autor.first_name }} {{ comentario.autor.last_name }}:<br/>
+            {{ comentario.texto }} 
+
+            <a class="btn btn-outline-danger" href="{% url 'publicaciones:borrar-comentario' comentario.id %}" role="button">Eliminar</a>
+           
+            
+        </div>
+    </div>
+   
+    
+    {% endfor %}
+    <form method="post">
+        {% csrf_token %}
+        {{ formulario_comentario}}
+        <button type="submit" class="btn btn-dark">Comentar</button>
+    </form> 
+</ul>
+</div>
+
+
+{% endblock contenido %}
