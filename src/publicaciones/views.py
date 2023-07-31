@@ -30,7 +30,7 @@ def categoriaView(request, cats):
 
 
 # View que permite ver los detalles de una publicacion
-class PostDetalle(LoginRequiredMixin, DetailView):
+class PostDetalle(LoginRequiredMixin, SuperUsuarioAutorMixin, DetailView):
     template_name = 'detalle-post.html'
     model = Publicaciones
     context_object_name = 'post'
@@ -56,13 +56,13 @@ class PostDetalle(LoginRequiredMixin, DetailView):
             comentario.save()
         return super().get(request)
 
-class AgregarCategoriaView(CreateView):
+class AgregarCategoriaView(LoginRequiredMixin, SuperUsuarioAutorMixin, CreateView):
 	model = Categoria
 	template_name = 'agregar_categoria.html'
 	fields = '__all__' 
         
 # View que crea posteos nuevos
-class Postear(SuperUsuarioAutorMixin, ColaboradorMixin, LoginRequiredMixin, CreateView):
+class Postear(LoginRequiredMixin, SuperUsuarioAutorMixin, ColaboradorMixin, CreateView):
     model = Publicaciones
     template_name = 'postear.html'
     form_class = PostForm
@@ -76,7 +76,7 @@ class Postear(SuperUsuarioAutorMixin, ColaboradorMixin, LoginRequiredMixin, Crea
         return super().form_valid(f)
        
    
-class PostearView(CreateView):
+class PostearView(LoginRequiredMixin, ColaboradorMixin, CreateView):
         
     def get(self, request):
         form = PostForm()
@@ -98,7 +98,7 @@ class PostearView(CreateView):
 #	#fields = ('title', 'body')
 
 # View que actualiza una publicacion ya existente
-class EditarPost(ColaboradorMixin, SuperUsuarioAutorMixin, LoginRequiredMixin, UpdateView):
+class EditarPost(LoginRequiredMixin, SuperUsuarioAutorMixin, ColaboradorMixin, UpdateView):
     model = Publicaciones
     template_name = 'editar-post.html'
     form_class = PostForm
@@ -107,7 +107,7 @@ class EditarPost(ColaboradorMixin, SuperUsuarioAutorMixin, LoginRequiredMixin, U
         return reverse('publicaciones:publicaciones')
 
 # View que elimina un posteo
-class EliminarPost(SuperUsuarioAutorMixin, LoginRequiredMixin, DeleteView):
+class EliminarPost(LoginRequiredMixin, SuperUsuarioAutorMixin, DeleteView):
     template_name = 'eliminar-post.html'
     model = Publicaciones
 
@@ -116,7 +116,7 @@ class EliminarPost(SuperUsuarioAutorMixin, LoginRequiredMixin, DeleteView):
 
 
 
-class BorrarComentarioView(ColaboradorMixin, SuperUsuarioAutorMixin, LoginRequiredMixin, DeleteView):
+class BorrarComentarioView(LoginRequiredMixin, ColaboradorMixin, SuperUsuarioAutorMixin, DeleteView):
     model = Comentario
     template_name = 'borrar-comentario.html'
 

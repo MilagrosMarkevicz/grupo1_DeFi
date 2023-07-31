@@ -18,4 +18,4 @@ class SuperUsuarioAutorMixin(UserPassesTestMixin):
 
 class ColaboradorMixin(UserPassesTestMixin):
     def test_func(self):
-        return self.request.user.es_staff or self.request.user.is_superuser
+        return self.request.user.is_staff or self.request.user.is_superuser

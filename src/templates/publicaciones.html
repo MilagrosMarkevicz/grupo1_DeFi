@@ -34,7 +34,7 @@
                           <p class="card-text"><small class="text-body-secondary">Creado por: {{post.creador}}</small></p>
                           <a class="btn btn-primary" href="{% url 'publicaciones:detalle-post' post.pk %}" role="button">Detalles</a>
                           </div>
-                         {% if user.is_superuser or user == user.es_staff %}
+                         {% if user.is_staff %}
                               <a class="btn btn-secondary" href="{% url 'publicaciones:editar-post' post.pk %}" role="button">Editar</a>
                               <a class="btn btn-danger" href="{% url 'publicaciones:eliminar-post' post.pk %}" role="button">Eliminar</a>
                    
