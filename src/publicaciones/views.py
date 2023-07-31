@@ -25,8 +25,8 @@ def categoriaListView(request):
     return render(request, 'categoria_list.html', {'menu_categoria_list':menu_categoria_list})
 
 def categoriaView(request, cats):
-    category_posts = Publicaciones.objects.filter(category=cats.replace('-', ' '))
-    return render(request, 'categories.html', {'cats':cats.replace('-', ' ').title(), 'category_posts':category_posts})
+    category_posts = Publicaciones.objects.filter(categoria=cats.replace('-', ' '))
+    return render(request, 'categoria.html', {'cats':cats.replace('-', ' ').title(), 'category_posts':category_posts})
 
 
 # View que permite ver los detalles de una publicacion

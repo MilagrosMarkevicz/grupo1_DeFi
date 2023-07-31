@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath('src')))
 LOGIN_URL = '/usuarios/login/'
 
 
-AUTH_USER_MODEL = 'usuarios.User'
+AUTH_USER_MODEL = 'auth.User'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-p47_$+olajx#1uvzb1!b!j87#$_##bf@!bha_95@y%c!%@gf2u'
@@ -132,3 +132,6 @@ STATICFILES_DIRS =[
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'

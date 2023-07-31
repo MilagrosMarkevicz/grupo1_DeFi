@@ -21,12 +21,11 @@ class Publicaciones(models.Model):
     update = models.DateField(auto_now = True)
     titulo = models.CharField(max_length= 255)
     post = models.TextField()
-# categoria = models.CharField(Categoria, on_delete= models.SET_NULL, related_name= 'posteos', null = True)
     categoria = models.CharField(max_length=255, default='')
     creador = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posteos_creador')
     
     def __str__(self):
-        return self.titulo + '-' + self.creador
+        return self.titulo + '-' + self.creador.username
     
     def get_absolute_url(self):
         return reverse('publicaciones')

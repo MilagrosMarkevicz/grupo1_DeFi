@@ -3,10 +3,10 @@
 
 
 {% block contenido %}
-<h1>{{categorias}}</h1>
+<h1>{{cats}}</h1>
 
 <ul>
-{% for post in categoria_publicaciones  %}
+{% for post in category_posts %}
 <div class="card m-5">
     <div class="card-header">
       {{post.fecha}}
@@ -17,17 +17,18 @@
       <p class="card-text">{{post.categoria}}</p>
       <p class="card-text">{{post.creador}}</p>
       
-
-      {% if user.is_superuser or user == user.es_colaborador %}
-      <a href="{% url 'publicaciones:editar-post' post.pk %}" class="custom-button">Editar posteo!</a>
-      <a href="{% url 'publicaciones:eliminar-post' post.pk %}" class="custom-button">Eliminar posteo!</a>
-      <a href="{% url 'publicaciones:postear' post.pk %}" class="custom-button"> Postear!</a>
-      {% endif %}
-    </div>
-</div>
+    
+      {% if user.is_superuser or user == user.es_staff %}
+                              <a class="btn btn-secondary" href="{% url 'publicaciones:editar-post' post.pk %}" role="button">Editar</a>
+                              <a class="btn btn-danger" href="{% url 'publicaciones:eliminar-post' post.pk %}" role="button">Eliminar</a>
+                   
+                              {% endif %}
+                            </div>
+                          </div>
 {% endfor %}
 </ul> 
-categoria_publicaciones
+
+
 
 
 {% endblock contenido %}

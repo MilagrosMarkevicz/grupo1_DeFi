@@ -7,9 +7,6 @@
         
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
         <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
         <title>Blog DEFI</title>
     
@@ -29,17 +26,40 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                          {% block extra %}
+                        {% if user.is_superuser or user == user.es_staff %}
+                        <a class="btn btn-primary" href="{% url 'publicaciones:postear' %}" role="button">Publicar</a>
+                        {% endif %}
+
+                   
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Categorias
+                            </button>
+                            <ul class="dropdown-menu">
+                                
                         
-                    {% endblock extra %}
-             
+                                
+                        {% for cats in menu_categoria %}
+                            <a class="dropdown-item" href="{% url 'publicaciones:categoria' cats|slugify %}">{{ cats }}</a>
+                            {% endfor %}    
+                        </ul>
+                        
+                        </div>
+                        {% if user.is_superuser or user == user.es_staff %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'publicaciones:agregar_categoria' %}">Agregar Categorias</a></li>
+                        {% endif %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'publicaciones:publicaciones' %}">Publicaciones</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Acerca de</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'contacto' %}">Contacto</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'usuarios:login' %}">login</a></li>
-                        
-                    
-                  
+
+
+{% if user.is_authenticated %}
+<li class="nav-item"><a class="nav-link" href="{% url 'usuarios:logout' %}">logout</a></li>
+{% else %}
+<li class="nav-item"><a class="nav-link" href="{% url 'usuarios:login' %}">login</a></li>
+{% endif %}
+
+              
                         
                     </ul>
                 </div>

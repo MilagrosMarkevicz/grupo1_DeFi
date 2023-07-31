@@ -13,7 +13,7 @@ urlpatterns = [
     path('eliminar-post/<int:pk>', views.EliminarPost.as_view(), name = 'eliminar-post'),
     path('detalle-post/<int:pk>', views.PostDetalle.as_view(), name = 'detalle-post'),
     path('borrar-comentario/<int:pk>', views.BorrarComentarioView.as_view(), name = 'borrar-comentario'),
-    path('categoria/<str:categorias>/', views.categoriaView, name = 'categoria'),
+    path('categoria/<str:cats>/', views.categoriaView, name = 'categoria'),
     path('categoria_list/', views.categoriaListView, name= 'categoria_list'),
     path('agregar_categoria/', views.AgregarCategoriaView.as_view(), name= 'agregar_categoria'),
     
