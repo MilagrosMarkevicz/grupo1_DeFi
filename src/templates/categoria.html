@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block contenido %}
+<h1>{{cats}}</h1>
+
+<ul>
+{% for post in category_posts %}
+<div class="card m-5">
+    <div class="card-header">
+      {{post.fecha}}
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{post.titulo}}</h5>
+      <p class="card-text">{{post.post|truncatechars:400}}</p>
+      <p class="card-text">{{post.categoria}}</p>
+      <p class="card-text">{{post.creador}}</p>
+      
+    
+      {% if user.is_staff %}
+                              <a class="btn btn-secondary" href="{% url 'publicaciones:editar-post' post.pk %}" role="button">Editar</a>
+                              <a class="btn btn-danger" href="{% url 'publicaciones:eliminar-post' post.pk %}" role="button">Eliminar</a>
+                   
+                              {% endif %}
+                            </div>
+                          </div>
+{% endfor %}
+</ul> 
+
+
+
+
+{% endblock contenido %}
+    

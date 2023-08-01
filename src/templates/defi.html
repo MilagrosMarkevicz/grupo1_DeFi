@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+    
+
+    
+
+
+        <!-- Page content-->
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Post content-->
+                    <article>
+                        <!-- Post header-->
+                        <header class="mb-4">
+                            <!-- Post title-->
+                            <h1 class="fw-bolder mb-1">¿Qué son las DeFi?</h1>
+                            <!-- Post meta content-->
+                            <div class="text-muted fst-italic mb-2">Publicado el 25 de Julio de 2023 by Start Bootstrap</div>
+                            <!-- Post categories-->
+                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Web Design</a>
+                            <a class="badge bg-secondary text-decoration-none link-light" href="#!">Freebies</a>
+                        </header>
+                        <!-- Preview image figure-->
+                        <figure class="mb-4"><img class="img-fluid rounded" src="{% static 'img/defi.png' %}" alt="..." /></figure>
+                        <!-- Post content-->
+                        <section class="mb-5">
+                            <p class="fs-5 mb-4">Las criptomonedas o Finanzas Descentralizadas (DeFi, por sus siglas en inglés), son una nueva forma de servicios financieros que utiliza la tecnología blockchain (cadena de bloques) para crear un sistema descentralizado, sin mediación de terceros como los bancos.</p>
+                            <p class="fs-5 mb-4">Los datos y transacciones son registrados de forma colectiva en las redes, promoviendo así la descentralización de la información, aunque también existen blockchains de uso privado, cuyo control es  más centralizado.</p>
+                            <p class="fs-5 mb-4">Muchos de los servicios financieros descentralizados se basan en la utilización de criptomonedas, como garantía o como medio de pago, y están impulsando la adopción de las DEFI a nivel mundial.</p>
+                            <h2 class="fw-bolder mb-4 mt-5"></h2>
+                            <p class="fs-5 mb-4"></p>
+                            <p class="fs-5 mb-4"></p>
+                        </section>
+                    </article>
+                    <!-- Comments section-->
+                    <section class="mb-5">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <!-- Comment form-->
+                                <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"></textarea></form>
+                                <!-- Comment with nested comments-->
+                                <div class="d-flex mb-4">
+                                    <!-- Parent comment-->
+                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                    <div class="ms-3">
+                                        <div class="fw-bold">Commenter Name</div>
+                                        If you're going to lead a space frontier, it has to be government; it'll never be private enterprise. Because the space frontier is dangerous, and it's expensive, and it has unquantified risks.
+                                        <!-- Child comment 1-->
+                                        <div class="d-flex mt-4">
+                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                            <div class="ms-3">
+                                                <div class="fw-bold">Commenter Name</div>
+                                                And under those conditions, you cannot establish a capital-market evaluation of that enterprise. You can't get investors.
+                                            </div>
+                                        </div>
+                                        <!-- Child comment 2-->
+                                        <div class="d-flex mt-4">
+                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                            <div class="ms-3">
+                                                <div class="fw-bold">Commenter Name</div>
+                                                When you put money directly to a problem, it makes a good headline.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Single comment-->
+                                <div class="d-flex">
+                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                    <div class="ms-3">
+                                        <div class="fw-bold">Commenter Name</div>
+                                        When I look at the universe and all the ways the universe wants to kill us, I find it hard to reconcile that with statements of beneficence.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- Side widgets-->
+                <div class="col-lg-4">
+                    <!-- Search widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Buscar</div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input class="form-control" type="text" placeholder="Buscar..." aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="button">➤</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Categories widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Categorías</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="#!">¿Qué son las DeFi?</a></li>
+                                        <li><a href="#!">¿Qué son las blockchains?</a></li>
+                                        <li><a href="#!">¿Qué son los tockens?</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-5">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="#!">Reglas de trading</a></li>
+                                        <li><a href="#!">Ethereum</a></li>
+                                        <li><a href="#!">Bitcoin</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Side widget-->
+                    <div class="card mb-4">
+                        <div class="card-header"></div>
+                        <div class="card-body">
+                            
+                            <!--esto es el login-->
+                            <form>
+                                <div class="form-floating mb-3">
+                                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                  <label for="floatingInput">Correo electrónico</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                  <label for="floatingPassword">Contraseña</label>
+                                </div>
+                
+                                <div class="form-check mb-3">
+                                  <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
+                                  <label class="form-check-label" for="rememberPasswordCheck">
+                                    Recuerda mi contraseña
+                                  </label>
+                                </div>
+                
+                                <div class="d-grid">
+                                  <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Iniciar sesión</button>
+                                  <div class="text-center">
+                                    <a class="small" href="#">¿Olvidaste tu contraseña?</a>
+                                  </div>
+                                </div>
+                
+                              </form>
+                              <!--esto es el login-->
+
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src=""></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'js/scripts.js'%}"></script>  
+    </body>
+</html>
+{% endblock contenido %}
