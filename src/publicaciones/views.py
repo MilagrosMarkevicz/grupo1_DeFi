@@ -30,7 +30,7 @@ def categoriaView(request, cats):
 
 
 # View que permite ver los detalles de una publicacion
-class PostDetalle(LoginRequiredMixin, SuperUsuarioAutorMixin, DetailView):
+class PostDetalle(LoginRequiredMixin, DetailView):
     template_name = 'detalle-post.html'
     model = Publicaciones
     context_object_name = 'post'
@@ -56,13 +56,13 @@ class PostDetalle(LoginRequiredMixin, SuperUsuarioAutorMixin, DetailView):
             comentario.save()
         return super().get(request)
 
-class AgregarCategoriaView(LoginRequiredMixin, SuperUsuarioAutorMixin, CreateView):
+class AgregarCategoriaView(LoginRequiredMixin, CreateView):
 	model = Categoria
 	template_name = 'agregar_categoria.html'
 	fields = '__all__' 
         
 # View que crea posteos nuevos
-class Postear(LoginRequiredMixin, SuperUsuarioAutorMixin, ColaboradorMixin, CreateView):
+class Postear(LoginRequiredMixin, ColaboradorMixin, CreateView):
     model = Publicaciones
     template_name = 'postear.html'
     form_class = PostForm
@@ -116,7 +116,7 @@ class EliminarPost(LoginRequiredMixin, SuperUsuarioAutorMixin, DeleteView):
 
 
 
-class BorrarComentarioView(LoginRequiredMixin, ColaboradorMixin, SuperUsuarioAutorMixin, DeleteView):
+class BorrarComentarioView(LoginRequiredMixin, SuperUsuarioAutorMixin, DeleteView):
     model = Comentario
     template_name = 'borrar-comentario.html'
 

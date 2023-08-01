@@ -11,6 +11,7 @@ from django.urls import reverse
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from .models import Profile
+from .forms import UserChangeForm
 
 class LoginUsuario(LoginView):
     template_name = 'usuarios/login.html'
@@ -37,7 +38,7 @@ class ShowProfilePageView(DetailView):
 class EditarUsuario(UpdateView, LoginRequiredMixin):
     model = User
     template_name = 'usuarios/editar_usuario.html'
-    form_class = UserCreationForm
+    form_class = UserChangeForm
     
     def form_valid(self, form):
 

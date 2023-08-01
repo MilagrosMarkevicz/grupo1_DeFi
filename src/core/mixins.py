@@ -3,17 +3,17 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 
 class SuperUsuarioAutorMixin(UserPassesTestMixin):
     def test_func(self):
-        usuario = self.request.user
+        user = self.request.user
         obj = self.get_object()
 
 
 #Acá entra si se trata de una publicación, por la columna creador
         if hasattr(obj, 'creador'):
-            return usuario == obj.creador or usuario.is_superuser
+            return user == obj.creador or user.is_superuser
         
 #Acá entra si se trata de un comentario, por la columna autor
         if hasattr(obj, 'autor'):
-            return usuario == obj.autor or usuario.is_superuser or usuario == obj.post.creador
+            return user == obj.autor or user.is_superuser or user== obj.post.creador
         
 
 class ColaboradorMixin(UserPassesTestMixin):
