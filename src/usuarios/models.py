@@ -1,14 +1,4 @@
 from django.db import models
-<<<<<<< HEAD
-from django.contrib.auth.models import AbstractUser
-# Create your models here.
-
-
-class User (AbstractUser):
-    telefono = models.CharField(max_length=20)
-    es_admin = models.BooleanField(default=False) 
-         
-=======
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.auth.models import AbstractUser, Group, Permission
@@ -42,4 +32,3 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
->>>>>>> ad4bde6a87cb55703e633a2843556956b3c8b2cf
