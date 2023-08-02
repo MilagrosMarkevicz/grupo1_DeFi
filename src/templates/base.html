@@ -54,9 +54,9 @@
 
 
 {% if user.is_authenticated %}
-<li class="nav-item"><a class="nav-link" href="{% url 'usuarios:logout' %}">logout</a></li>
+<li class="nav-item"><a class="nav-link" href="{% url 'usuarios:logout' %}">cerrar sesion</a></li>
 {% else %}
-<li class="nav-item"><a class="nav-link" href="{% url 'usuarios:login' %}">login</a></li>
+<li class="nav-item"><a class="nav-link" href="{% url 'usuarios:login' %}">iniciar sesion</a></li>
 {% endif %}
 
               
