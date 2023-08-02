@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .models import Publicaciones, Comentario, Categoria
-from .forms import PostForm, ComentarioForm
+from .forms import PostForm, ComentarioForm, CategoriaForm
 from core.mixins import SuperUsuarioAutorMixin, ColaboradorMixin
 from django.db.models import Q
 
@@ -59,8 +59,9 @@ class PostDetalle(LoginRequiredMixin, DetailView):
 class AgregarCategoriaView(LoginRequiredMixin, CreateView):
 	model = Categoria
 	template_name = 'agregar_categoria.html'
-	fields = '__all__' 
+	fields = '__all__'
         
+
         
 # View que crea posteos nuevos
 class Postear(LoginRequiredMixin, ColaboradorMixin, CreateView):

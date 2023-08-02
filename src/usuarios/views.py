@@ -24,6 +24,15 @@ class RegistroView(CreateView):
     form_class = RegistrarseFrom
     success_url = reverse_lazy('index')
 
+    def form_valid(self, form):
+        respuesta = super().form_valid(form)
+
+        usuario = form.save()
+
+        login(self.request, usuario)
+
+        return respuesta
+
 class ShowProfilePageView(DetailView):
 	model = Profile
 	template_name = 'registration/user_profile.html'

@@ -45,3 +45,8 @@ class ComentarioForm(forms.ModelForm):
         'texto' : forms.TextInput(attrs={'placeholder':'Escribe aqui tu comentario', 'class': 'form-control'}),
     }
 
+class CategoriaForm(forms.ModelForm):
+     class Meta:
+          model = Categoria
+          fields = ['nombre']
+
