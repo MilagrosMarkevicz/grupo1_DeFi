@@ -61,6 +61,7 @@ class AgregarCategoriaView(LoginRequiredMixin, CreateView):
 	template_name = 'agregar_categoria.html'
 	fields = '__all__' 
         
+        
 # View que crea posteos nuevos
 class Postear(LoginRequiredMixin, ColaboradorMixin, CreateView):
     model = Publicaciones
@@ -122,3 +123,16 @@ class BorrarComentarioView(LoginRequiredMixin, SuperUsuarioAutorMixin, DeleteVie
 
     def get_success_url(self):
         return reverse('publicaciones:detalle-post', args=[self.object.post.id])
+    
+
+class EditarComentarioView(LoginRequiredMixin, SuperUsuarioAutorMixin, UpdateView):
+    model = Comentario
+
+    template_name = 'editar-comentario.html'
+
+    form_class = ComentarioForm
+
+    def get_success_url(self):
+        return reverse('publicaciones:detalle-post', args=[self.object.post.id])
+
+    

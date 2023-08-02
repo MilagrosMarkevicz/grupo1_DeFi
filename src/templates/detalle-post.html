@@ -36,8 +36,15 @@
         <div class="card-body">
             {{ comentario.autor.first_name }} {{ comentario.autor.last_name }}:<br/>
             {{ comentario.texto }} 
+            
+            
+            {% if user.is_superuser or user == comentario.autor %}
 
             <a class="btn btn-outline-danger" href="{% url 'publicaciones:borrar-comentario' comentario.id %}" role="button">Eliminar</a>
+            
+            <a class="btn btn-primary" href="{% url 'publicaciones:editar-comentario' comentario.id %}" role="button">Editar</a>
+                
+            {% endif %}
            
             
         </div>
