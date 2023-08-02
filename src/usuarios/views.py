@@ -13,6 +13,8 @@ from django.urls import reverse_lazy
 from .models import Profile
 from .forms import UserChangeForm
 
+from .forms import EditarUserForm
+
 class LoginUsuario(LoginView):
     template_name = 'usuarios/login.html'
 
@@ -35,27 +37,32 @@ class ShowProfilePageView(DetailView):
 		context["page_user"] = page_user
 		return context
 
+
+
+
 class EditarUsuario(UpdateView, LoginRequiredMixin):
     model = User
+
     template_name = 'usuarios/editar_usuario.html'
-    form_class = UserChangeForm
-    
+
+    form_class = EditarUserForm
+
+
     def form_valid(self, form):
 
         respuesta = super().form_valid(form)
         usuario = form.save()
+
         login(self.request,usuario)
+
         return respuesta
+
 
     def get_success_url(self):
         return reverse('index')
     
 
-class EliminarUsuario(DeleteView, LoginRequiredMixin):
-    template_name = 'usuarios/eliminar_usuario.html'
+    
 
-    model = User
 
-    def get_success_url(self):
-        return reverse('usuarios:login')
     

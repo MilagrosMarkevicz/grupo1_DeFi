@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Editar Usuario</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f0f0f0;
+    }
+
+    .custom-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 15px;
+      max-width: 400px; /* Reducimos el ancho máximo del formulario */
+      width: 100%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Estilos para redondear los inputs de texto */
+    .form-group input[type="text"],
+    .form-group input[type="email"], /* Agregamos el selector para el input de correo electrónico */
+    .form-group input[type="password"] {
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      padding: 2px; /* Reducimos el espacio interior de los inputs */
+      width: 40%;
+    }
+
+    /* Estilo para redondear el botón y cambiar el color */
+    .btn {
+      border-radius: 5px;
+      padding: 2px; /* Reducimos el espacio interior del botón */
+    }
+
+    /* Cambiamos el color del botón a un azul más claro */
+    .btn-primary {
+      background-color: #0062E6;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="custom-container">
+    <div class="form-container">
+      <h2 class="text-center mb-4">Crear Usuario</h2>
+      <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+
+        {% for field in form %}
+          <div class="form-group">
+            {% if field.name == 'email' %}
+              <label for="{{ field.id_for_label }}">Correo electronico</label>
+            {% else %}
+              <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+            {% endif %}
+            {{ field }}
+            <div class="invalid-feedback">
+              {{ field.errors }}
+            </div>
+          </div>
+        {% endfor %}
+
+        <!-- Usamos la clase .btn-primary para cambiar el color del botón -->
+        <button type="submit" class="btn btn-primary btn-block mt-3">Guardar Cambios</button>
+        <a href="{% url 'usuarios:cambiar_contrasenia' user.id %}"> cambiar contraseña</a>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
