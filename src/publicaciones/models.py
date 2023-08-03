@@ -17,7 +17,7 @@ class Categoria(models.Model):
 
 #Esta clase crea una tabla para las publicaciones
 class Publicaciones(models.Model):
-    fecha = models.DateField(auto_now_add = True)
+    fecha = models.DateTimeField(auto_now_add = True)
     update = models.DateField(auto_now = True)
     titulo = models.CharField(max_length= 255)
     post = models.TextField()
