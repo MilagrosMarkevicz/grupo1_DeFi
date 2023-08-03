@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .models import Publicaciones, Comentario, Categoria
 from .forms import PostForm, ComentarioForm
-from core.mixins import  ColaboradorMixin,SuperusuarAutorMixin
+from core.mixins import ColaboradorMixin, SuperUsuarioAutorMixin
 from django.db.models import Q
 
 # View basada en una clase que renderiza las publicaciones
@@ -13,24 +13,58 @@ class VerPublicaciones(ListView):
     template_name = 'publicaciones.html'
     context_object_name = 'posteos'
     cats = Categoria.objects.all()
+    paginate_by= 3
                 
     def get_context_data(self, *args, **kwargs):
         menu_categoria = Categoria.objects.all()
         contexto = super(VerPublicaciones, self).get_context_data(*args, **kwargs)
-        contexto["menu_categoria"] = menu_categoria
+        contexto['categorias'] = menu_categoria
         return contexto
         
-def categoriaListView(request):
-    menu_categoria_list = Categoria.objects.all()
-    return render(request, 'categoria_list.html', {'menu_categoria_list':menu_categoria_list})
+        
+#def categoriaListView(request):
+      #menu_categoria_list = Categoria.objects.all()
+      #return render(request, 'categoria_list.html', {'menu_categoria_list':menu_categoria_list})
 
-def categoriaView(request, cats):
-    category_posts = Publicaciones.objects.filter(category=cats.replace('-', ' '))
-    return render(request, 'categories.html', {'cats':cats.replace('-', ' ').title(), 'category_posts':category_posts})
+#def categoriaView(request, cats):
+      #category_posts = Publicaciones.objects.filter(categoria=cats.replace('-', ' '))
+      #return render(request, 'categoria.html', {'cats':cats.replace('-', ' ').title(), 'category_posts':category_posts})
+
+
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        
+
+        #Filtrando por categoria
+        categoria_seleccionada = self.request.GET.get('categoria')
+        if categoria_seleccionada:
+            queryset = queryset.filter(categoria = categoria_seleccionada)
+        
+
+        # Ordenando por distintos criterios
+        orden = self.request.GET.get('orderby')
+        if orden:
+            if orden == 'fecha_asc':
+                queryset = queryset.order_by('fecha')
+            elif orden == 'fecha_desc':
+                queryset = queryset.order_by('-fecha')
+            elif orden == 'alf_asc':
+                queryset = queryset.order_by('titulo')
+            elif orden == 'alf_desc':
+                queryset = queryset.order_by('-titulo')
+
+
+        return queryset
+
+
+
+
+
 
 
 # View que permite ver los detalles de una publicacion
-class PostDetalle(LoginRequiredMixin, DetailView):
+class PostDetalle(LoginRequiredMixin,DetailView):
     template_name = 'detalle-post.html'
     model = Publicaciones
     context_object_name = 'post'
@@ -56,13 +90,13 @@ class PostDetalle(LoginRequiredMixin, DetailView):
             comentario.save()
         return super().get(request)
 
-class AgregarCategoriaView(CreateView):
-	model = Categoria
-	template_name = 'agregar_categoria.html'
-	fields = '__all__' 
+#class AgregarCategoriaView(LoginRequiredMixin, CreateView):
+	#model = Categoria
+	#template_name = 'agregar_categoria.html'
+	#fields = '__all__' 
         
 # View que crea posteos nuevos
-class Postear(SuperusuarAutorMixin, ColaboradorMixin, LoginRequiredMixin, CreateView):
+class Postear(LoginRequiredMixin, ColaboradorMixin, CreateView):
     model = Publicaciones
     template_name = 'postear.html'
     form_class = PostForm
@@ -76,7 +110,7 @@ class Postear(SuperusuarAutorMixin, ColaboradorMixin, LoginRequiredMixin, Create
         return super().form_valid(f)
        
    
-class PostearView(CreateView):
+class PostearView(LoginRequiredMixin, ColaboradorMixin, CreateView):
         
     def get(self, request):
         form = PostForm()
@@ -98,7 +132,7 @@ class PostearView(CreateView):
 #	#fields = ('title', 'body')
 
 # View que actualiza una publicacion ya existente
-class EditarPost(ColaboradorMixin,LoginRequiredMixin, SuperusuarAutorMixin,UpdateView):
+class EditarPost(LoginRequiredMixin,SuperUsuarioAutorMixin, ColaboradorMixin, UpdateView):
     model = Publicaciones
     template_name = 'editar-post.html'
     form_class = PostForm
@@ -107,7 +141,7 @@ class EditarPost(ColaboradorMixin,LoginRequiredMixin, SuperusuarAutorMixin,Updat
         return reverse('publicaciones:publicaciones')
 
 # View que elimina un posteo
-class EliminarPost(LoginRequiredMixin, SuperusuarAutorMixin,DeleteView):
+class EliminarPost(LoginRequiredMixin,SuperUsuarioAutorMixin, DeleteView):
     template_name = 'eliminar-post.html'
     model = Publicaciones
 
@@ -116,9 +150,19 @@ class EliminarPost(LoginRequiredMixin, SuperusuarAutorMixin,DeleteView):
 
 
 
-class BorrarComentarioView(ColaboradorMixin, LoginRequiredMixin, SuperusuarAutorMixin,DeleteView):
+class BorrarComentarioView(LoginRequiredMixin, ColaboradorMixin,SuperUsuarioAutorMixin, DeleteView):
     model = Comentario
     template_name = 'borrar-comentario.html'
 
     def get_success_url(self):
         return reverse('publicaciones:detalle-post', args=[self.object.post.id])
+
+
+
+from django.shortcuts import render
+from .models import Publicaciones
+
+def indexView(request):
+    # Recupera las últimas publicaciones ordenadas por fecha de publicación
+    ultimas_publicaciones = Publicaciones.objects.order_by('-fecha_publicacion')[:5]
+    return render(request, 'index.html', {'ultimas_publicaciones': ultimas_publicaciones})

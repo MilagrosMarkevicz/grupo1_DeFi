@@ -18,17 +18,19 @@ class Categoria(models.Model):
 
 #Esta clase crea una tabla para las publicaciones
 class Publicaciones(models.Model):
-    fecha = models.DateField(auto_now_add = True)
+    fecha = models.DateTimeField(auto_now_add = True)
     update = models.DateField(auto_now = True)
     titulo = models.CharField(max_length= 255)
     post = models.TextField()
     categoria = models.ForeignKey(Categoria, on_delete= models.SET_NULL, related_name= 'posteos', null = True)
     creador = models.ForeignKey(User, on_delete= models.CASCADE, related_name= 'posteos_usuario')
-
+    imagen= models.ImageField(upload_to='imagen', null=True, blank=True)
     def __str__(self):
-        return self.titulo +'-'+ self.creador
+        return self.titulo +'-'+ self.creador.username
     
-
+    def get_absolute_url(self):
+        return reverse('publicaciones')
+    
 class Comentario(models.Model):
     texto = models.TextField()
     fecha = models.DateField(auto_now_add= True)
@@ -38,3 +40,6 @@ class Comentario(models.Model):
 
     def __str__(self):
         return self.post.titulo + '-' + self.autor.first_name
+    
+
+    

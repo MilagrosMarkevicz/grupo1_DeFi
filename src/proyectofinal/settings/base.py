@@ -20,11 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath('src')))
 
 #redirigir el usuario
 LOGIN_URL='/usuarios/login/'
+LOGOUT_REDIRECT_URL = 'index'
 LOGIN_REDIRECT_URL = 'index'
 
 #le digo a django que use mi modelo propio para los usuarios 
 
-AUTH_USER_MODEL = 'usuarios.User'
+AUTH_USER_MODEL = 'auth.User'
 
 
 
@@ -114,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 

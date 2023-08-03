@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+    
+
+    
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <!-- Page content-->
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Post content-->
+                    <article>
+                        <!-- Post header-->
+                        <header class="mb-4">
+                            <!-- Post title-->
+                            <h5 class="fw-bolder mb-1">¿Qué es trading?</h5>
+                            <!-- Post meta content-->
+                            <div class="text-muted fst-italic mb-2">Publicado el 25 de Julio de 2023 by Javier</div>
+                        </header>
+                        <!-- Preview image figure-->
+                        <figure class="mb-4"><img class="img-fluid rounded" src="{% static 'img/traiding.jpg' %}" alt="..." /></figure>
+                        <!-- Post content-->
+                        <section class="mb-5">
+                            <p class="fs-5 mb-4">Las personas que ejercen la profesión de trading se les conoce como traders (o alternativamente, operadores o negociantes por cuenta propia), los cuales pueden trabajar de forma independiente, en un fondo de inversión, en un banco o en otra entidad financiera.</p>
+                            <p class="fs-5 mb-4">En las finanzas descentralizadas el trading a corto plazo se produce cuando compras una criptomoneda y la retienes por un breve período de tiempo, para luego generar ganancias con su venta, ya que la idea es que el precio de éstas debería aumentar a largo plazo.</p>
+                            <p class="fs-5 mb-4"></p>
+                            
+                        </section>
+                    </article>         
+                    
+                </div>
+            </div>
+            
+                                
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">GRUPO 1 - INFORMATORIO 2023</p></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src=""></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'js/scripts.js'%}"></script>  
+    </body>
+</html>
+{% endblock contenido %}
