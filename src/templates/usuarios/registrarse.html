@@ -1,16 +1,68 @@
-{% extends 'base.html' %}
-{% block contenido %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registrarse</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
 
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
 
-<h1>Registrarse</h1>
-<br/><br/>
+        h1 {
+            text-align: center;
+            color: #555;
+        }
 
-<div class="form-group">
-	<form method="POST">
-		{% csrf_token %}
-		{{ form.as_p }}
-		<button class="btn btn-secondary">Registrarse</button>
-</div>
+        form {
+            margin-top: 20px;
+        }
 
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-size: 18px;
+        }
 
-{% endblock %}
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #0062E6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registrarse</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Registrarse</button>
+        </form>
+    </div>
+</body>
+</html>
