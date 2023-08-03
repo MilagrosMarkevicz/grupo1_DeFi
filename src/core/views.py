@@ -9,5 +9,8 @@ def indexView(request):
 def contactoView(request):
     return render(request, 'contacto.html', {})
 
+def acercadeView(request):
+    return render(request, 'nosotros.html', {})
+
 
 
