@@ -41,6 +41,8 @@ class Comentario(models.Model):
 
     def __str__(self):
         return self.post.titulo + '-' + self.autor.first_name
+    
+ 
 
 
     

@@ -1,8 +1,6 @@
 
 from django.contrib import admin
-from publicaciones.models import Publicaciones
-from publicaciones.models import Categoria
-from publicaciones.models import Comentario
+from publicaciones.models import Publicaciones,Categoria,Comentario
 
 
 admin.site.register(Publicaciones)
