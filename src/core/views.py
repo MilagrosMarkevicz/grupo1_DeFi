@@ -5,7 +5,9 @@ from publicaciones.models import Publicaciones
 
 #View que renderiza la página de inicio
 def indexView(request):
-    return render(request, 'index.html', {'posteos':Publicaciones.objects.all().order_by('fecha')})
+    # Recupera las últimas publicaciones ordenadas por fecha de publicación
+    ultimas_publicaciones = Publicaciones.objects.order_by('-fecha')[:5]
+    return render(request, 'index.html', {'ultimas_publicaciones': ultimas_publicaciones})
 
 
 
