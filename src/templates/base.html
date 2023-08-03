@@ -31,21 +31,10 @@
                         <a class="btn btn-primary" href="{% url 'publicaciones:postear' %}" role="button">Publicar</a>
                         {% endif %}
 
-                   
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Categorias
-                            </button>
-                            <ul class="dropdown-menu">
                                 
                         
-                                
-                        {% for cats in menu_categoria %}
-                            <a class="dropdown-item" href="{% url 'publicaciones:categoria' cats|slugify %}">{{ cats }}</a>
-                            {% endfor %}    
-                        </ul>
                         
-                        </div>
+                        
                         {% if user.is_staff %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'publicaciones:agregar_categoria' %}">Agregar Categorias</a></li>
                         {% endif %}

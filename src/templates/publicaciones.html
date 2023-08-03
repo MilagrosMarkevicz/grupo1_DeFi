@@ -16,6 +16,19 @@
                 <article>
                     <div class="post-container">
                         <h2>PUBLICACIONES</h2>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Categorias
+                            </button>
+                            <ul class="dropdown-menu">
+                                
+                        
+                                
+                            {% for cats in menu_categoria %}
+                                <a class="dropdown-item" href="{% url 'publicaciones:categoria' cats|slugify %}">{{ cats }}</a>
+                            {% endfor %}    
+                            </ul>
+    
 
                        {% for post in posteos %}
                        <div class="card m-5">
