@@ -1,15 +1,66 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>contactar</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f0f0f0;
+    }
 
+    .custom-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-{% block contenido %}
+    .form-container {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 15px;
+      max-width: 400px; /* Reducimos el ancho máximo del formulario */
+      width: 100%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-  <form method="post">
-    {% csrf_token %}
+    /* Estilos para redondear los inputs de texto */
+    .form-group input[type="text"],
+    .form-group input[type="email"], /* Agregamos el selector para el input de correo electrónico */
+    .form-group input[type="password"] {
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      padding: 2px; /* Reducimos el espacio interior de los inputs */
+      width: 40%;
+    }
 
-    {{ form.as_p }}
+    /* Estilo para redondear el botón y cambiar el color */
+    .btn {
+      border-radius: 5px;
+      padding: 2px; /* Reducimos el espacio interior del botón */
+    }
 
-    <button type="submit" class="btn btn-primary btn-block mt-3">enviar mensaje</button>
-  </form>
-{% endblock contenido %}
+    /* Cambiamos el color del botón a un azul más claro */
+    .btn-primary {
+      background-color: #0062E6;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="custom-container">
+    <div class="form-container">
+      <h2 class="text-center mb-4">Contactanos</h2>
+      <form method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
 
-  
+        {{ form.as_p }}
+
+        <!-- Usamos la clase .btn-primary para cambiar el color del botón -->
+        <button type="submit" class="btn btn-primary btn-block mt-3">Enviar</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
