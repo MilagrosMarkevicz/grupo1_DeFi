@@ -39,26 +39,23 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'publicaciones:agregar_categoria' %}">Agregar Categorias</a></li>
                         {% endif %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'publicaciones:publicaciones' %}">Publicaciones</a></li>
+
                         <li class="nav-item"><a class="nav-link" href="{% url 'acercade'  %}">Acerca de</a></li>
 
 
-
-
-
 {% if user.is_authenticated %}
+<li class="nav-item"><a class="nav-link" href="{% url 'contacto:contactar' %}">Contacto</a></li>
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
       {{ user.username }}
-    <li class="nav-item"><a class="nav-link" href="{% url 'contacto:contactar' %}">Contacto</a></li>
     </a>
     <ul class="dropdown-menu">
       <li><a class="dropdown-item" href="{% url 'usuarios:editar_usuario' user.id %}">Editar</a></li>
       <li><a class="dropdown-item" href="{% url 'usuarios:logout' %}">Cerrar Sesion</a></li>
-      
     </ul>
-</li>
+</li>j
 {% else %}
-<li class="nav-item"><a class="nav-link" href="{% url 'usuarios:login' %}">iniciar sesion</a></li>
+<li class="nav-item"><a class="nav-link" href="{% url 'usuarios:login' %}">login</a></li>
 {% endif %}
 
               
