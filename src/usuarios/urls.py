@@ -1,6 +1,6 @@
 from django.urls import path
-from django.contrib.auth.views import LoginView, LogoutView
-from .views import RegistroView, EliminarUsuario,EditarUsuario
+from django.contrib.auth.views import LoginView, LogoutView,PasswordChangeView
+from .views import RegistroView, EditarUsuario
 
 
 app_name= 'usuarios'
@@ -10,7 +10,8 @@ urlpatterns=[
     path('logout/', LogoutView.as_view(next_page=''),name = 'logout'),
     path('registrarse/', RegistroView.as_view(), name = 'registrarse'),
     path('editar_usuario/<int:pk>', EditarUsuario.as_view(),name = 'editar_usuario'),
-    path('eliminar_usuario/<int:pk>', EliminarUsuario.as_view(), name= 'eliminar_usuario')
+    path('editar_contrasenia/<int:pk>', PasswordChangeView.as_view(template_name = 'usuarios/cambiar_contrasenia.html',success_url = '../../index'), name = 'cambiar_contrasenia')
 ]
+
 
 

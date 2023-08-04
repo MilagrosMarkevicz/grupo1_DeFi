@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from .models import Publicaciones, Comentario, Categoria
-from .forms import PostForm, ComentarioForm
+from .forms import PostForm, ComentarioForm, CategoriaForm
 from core.mixins import SuperUsuarioAutorMixin, ColaboradorMixin
 from django.db.models import Q
 

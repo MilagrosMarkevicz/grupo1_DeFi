@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>contactar</title>
+  <title>Editar Usuario</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     body {
@@ -51,14 +51,27 @@
 <body>
   <div class="custom-container">
     <div class="form-container">
-      <h2 class="text-center mb-4">Contactanos</h2>
+      <h2 class="text-center mb-4">Crear Usuario</h2>
       <form method="post" class="needs-validation" novalidate>
         {% csrf_token %}
 
-        {{ form.as_p }}
+        {% for field in form %}
+          <div class="form-group">
+            {% if field.name == 'email' %}
+              <label for="{{ field.id_for_label }}">Correo electronico</label>
+            {% else %}
+              <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+            {% endif %}
+            {{ field }}
+            <div class="invalid-feedback">
+              {{ field.errors }}
+            </div>
+          </div>
+        {% endfor %}
 
         <!-- Usamos la clase .btn-primary para cambiar el color del botón -->
-        <button type="submit" class="btn btn-primary btn-block mt-3">Enviar</button>
+        <button type="submit" class="btn btn-primary btn-block mt-3">Guardar Cambios</button>
+        <a href="{% url 'usuarios:cambiar_contrasenia' user.id %}"> cambiar contraseña</a>
       </form>
     </div>
   </div>
