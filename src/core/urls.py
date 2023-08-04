@@ -7,7 +7,11 @@ urlpatterns = [
     path('publicaciones/', include('publicaciones.urls')),
     path('usuarios/', include('usuarios.urls')),
     path('contacto/', views.contactoView, name = 'contacto'),
-     path('acercade/', views.acercadeView, name = 'acercade'),
+    path('acercade/', views.acercadeView, name = 'acercade'),
+    path ('defi/', views.defiView, name= 'defi'),
+    path ('blockchains/', views.blockView, name='blockchains'),
+    path ('tokens/', views.tokensView, name='tokens'),
+    path ('trading/', views.tradingView, name='trading'),
 ]
 
 urlpatterns += staticfiles_urlpatterns ()
