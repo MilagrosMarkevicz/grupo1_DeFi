@@ -12,21 +12,52 @@ class VerPublicaciones(ListView):
     model = Publicaciones
     template_name = 'publicaciones.html'
     context_object_name = 'posteos'
-    cats = Categoria.objects.all()
+    #cats = Categoria.objects.all()
+
                 
     def get_context_data(self, *args, **kwargs):
-        menu_categoria = Categoria.objects.all()
-        contexto = super(VerPublicaciones, self).get_context_data(*args, **kwargs)
-        contexto["menu_categoria"] = menu_categoria
+       # menu_categoria = Categoria.objects.all()
+        contexto = super().get_context_data(**kwargs)
+        contexto['categorias']=Categoria.objects.all
         return contexto
         
-def categoriaListView(request):
-    menu_categoria_list = Categoria.objects.all()
-    return render(request, 'categoria_list.html', {'menu_categoria_list':menu_categoria_list})
+        
+#def categoriaListView(request):
+      #menu_categoria_list = Categoria.objects.all()
+      #return render(request, 'categoria_list.html', {'menu_categoria_list':menu_categoria_list})
 
-def categoriaView(request, cats):
-    category_posts = Publicaciones.objects.filter(categoria=cats.replace('-', ' '))
-    return render(request, 'categoria.html', {'cats':cats.replace('-', ' ').title(), 'category_posts':category_posts})
+#def categoriaView(request, cats):
+      #category_posts = Publicaciones.objects.filter(categoria=cats.replace('-', ' '))
+      #return render(request, 'categoria.html', {'cats':cats.replace('-', ' ').title(), 'category_posts':category_posts})
+
+
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        
+
+        #Filtrando por categoria
+        categoria_seleccionada = self.request.GET.get('categoria')
+        if categoria_seleccionada:
+            queryset = queryset.filter(categoria = categoria_seleccionada)
+        
+
+        # Ordenando por distintos criterios
+        orden = self.request.GET.get('orderby')
+        if orden:
+            if orden == 'fecha_asc':
+                queryset = queryset.order_by('fecha')
+            elif orden == 'fecha_desc':
+                queryset = queryset.order_by('-fecha')
+            elif orden == 'alf_asc':
+                queryset = queryset.order_by('titulo')
+            elif orden == 'alf_desc':
+                queryset = queryset.order_by('-titulo')
+
+
+        return queryset
+
+                
 
 
 # View que permite ver los detalles de una publicacion
@@ -59,7 +90,9 @@ class PostDetalle(LoginRequiredMixin, DetailView):
 class AgregarCategoriaView(LoginRequiredMixin, CreateView):
 	model = Categoria
 	template_name = 'agregar_categoria.html'
-	fields = '__all__' 
+	fields = '__all__'
+        
+
         
 # View que crea posteos nuevos
 class Postear(LoginRequiredMixin, ColaboradorMixin, CreateView):
@@ -122,3 +155,16 @@ class BorrarComentarioView(LoginRequiredMixin, SuperUsuarioAutorMixin, DeleteVie
 
     def get_success_url(self):
         return reverse('publicaciones:detalle-post', args=[self.object.post.id])
+    
+
+class EditarComentarioView(LoginRequiredMixin, SuperUsuarioAutorMixin, UpdateView):
+    model = Comentario
+
+    template_name = 'editar-comentario.html'
+
+    form_class = ComentarioForm
+
+    def get_success_url(self):
+        return reverse('publicaciones:detalle-post', args=[self.object.post.id])
+
+    

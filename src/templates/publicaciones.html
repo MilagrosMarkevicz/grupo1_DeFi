@@ -17,6 +17,22 @@
 
 
 
+                   
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Categorias
+    </button>
+    <ul class="dropdown-menu">
+        
+{% for categoria in menu_categoria %}
+    <a class="dropdown-item" href="#">{{ categoria }}</a>
+    {% endfor %}    
+</ul>
+
+</div>
+
+
+
 {% block contenido %}
 
     <form action="" method="get">
@@ -45,7 +61,6 @@
     </form>
 
 
-<a class="btn btn-primary" href="{% url 'publicaciones:postear' %}" role="button">Publicar</a>
 
 
 
@@ -78,12 +93,20 @@
                             {% if user.is_superuser or user == user.es_colaborador %}
                               <a class="btn btn-outline-secondary" href="{% url 'publicaciones:editar-post' post.pk %}" role="button">Editar</a>
                               <a class="btn btn-outline-danger" href="{% url 'publicaciones:eliminar-post' post.pk %}" role="button">Eliminar</a>
+                              
                    
                              {% endif %}
-                            </div> 
+
+                             
+                           </div> 
                          </div>
                         {% endfor %} 
                      </div> 
+
+
+
+
+
                  </article>
                 <!-- ... Rest of the content ... -->
             </div>
@@ -196,6 +219,12 @@
     
 
     {% endblock contenido %}
+
+        
+    
+
+
+    
 
         
     
