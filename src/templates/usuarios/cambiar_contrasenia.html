@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>contactar</title>
+  <title>Editar Contraseña</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     body {
@@ -20,7 +20,7 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       padding: 15px;
-      max-width: 400px; /* Reducimos el ancho máximo del formulario */
+      max-width: 500px; /* Reducimos el ancho máximo del formulario */
       width: 100%;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
@@ -51,14 +51,25 @@
 <body>
   <div class="custom-container">
     <div class="form-container">
-      <h2 class="text-center mb-4">Contactanos</h2>
+      <h2 class="text-center mb-4">Editar Contraseña</h2>
       <form method="post" class="needs-validation" novalidate>
         {% csrf_token %}
 
-        {{ form.as_p }}
+        {% for field in form %}
+          <div class="form-group">
+        
+
+              <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+
+            {{ field }}
+            <div class="invalid-feedback">
+              {{ field.errors }}
+            </div>
+          </div>
+        {% endfor %}
 
         <!-- Usamos la clase .btn-primary para cambiar el color del botón -->
-        <button type="submit" class="btn btn-primary btn-block mt-3">Enviar</button>
+        <button type="submit" class="btn btn-primary btn-block mt-3">Guardar</button>
       </form>
     </div>
   </div>

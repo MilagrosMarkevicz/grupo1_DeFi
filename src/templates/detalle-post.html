@@ -16,7 +16,7 @@
                               <p class="card-text">{{post.creador}}</p>
                               
 
-                              {% if user.is_staff %}
+                              {% if user.is_superuser or user == post.creador %}
                               <a class="btn btn-outline-secondary" href="{% url 'publicaciones:editar-post' post.pk %}" role="button">Editar</a>
                               <a class="btn btn-outline-danger" href="{% url 'publicaciones:eliminar-post' post.pk %}" role="button">Eliminar</a>
                        
@@ -36,8 +36,15 @@
         <div class="card-body">
             {{ comentario.autor.first_name }} {{ comentario.autor.last_name }}:<br/>
             {{ comentario.texto }} 
+            
+            
+            {% if user.is_superuser or user == comentario.autor %}
 
             <a class="btn btn-outline-danger" href="{% url 'publicaciones:borrar-comentario' comentario.id %}" role="button">Eliminar</a>
+            
+            <a class="btn btn-primary" href="{% url 'publicaciones:editar-comentario' comentario.id %}" role="button">Editar</a>
+                
+            {% endif %}
            
             
         </div>

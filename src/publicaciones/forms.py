@@ -1,5 +1,6 @@
 from django import forms
-from.models import Publicaciones,Comentario
+from.models import Publicaciones,Comentario, Categoria
+
 
 
 """class PostForm(forms.ModelForm):
@@ -43,3 +44,9 @@ class ComentarioForm(forms.ModelForm):
     widgets = {
         'texto' : forms.TextInput(attrs={'placeholder':'Escribe aqui tu comentario', 'class': 'form-control'}),
     }
+
+class CategoriaForm(forms.ModelForm):
+     class Meta:
+          model = Categoria
+          fields = ['nombre']
+

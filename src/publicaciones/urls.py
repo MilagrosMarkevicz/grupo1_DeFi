@@ -14,6 +14,7 @@ urlpatterns = [
     path('detalle-post/<int:pk>', views.PostDetalle.as_view(), name = 'detalle-post'),
     path('borrar-comentario/<int:pk>', views.BorrarComentarioView.as_view(), name = 'borrar-comentario'),
     path('agregar_categoria/', views.AgregarCategoriaView.as_view(), name= 'agregar_categoria'),
+    path('editar-comentario/<int:pk>', views.EditarComentarioView.as_view(),name = 'editar-comentario' ),
     
 ]
 
