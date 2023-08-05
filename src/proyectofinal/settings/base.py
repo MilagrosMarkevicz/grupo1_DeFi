@@ -34,7 +34,7 @@ SECRET_KEY = 'django-insecure-p47_$+olajx#1uvzb1!b!j87#$_##bf@!bha_95@y%c!%@gf2u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['DabiZx.pythonanywhere.com']
+ALLOWED_HOSTS = ['DabiZx.pythonanywhere.com','http://127.0.0.1:8000/']
 
 
 # Application definition
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'core',
     'publicaciones',
     'usuarios',
-    'bootstrap4', 
+    'bootstrap4',
     'contacto',
 
 ]
@@ -69,7 +69,7 @@ ROOT_URLCONF = 'proyectofinal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': ['/home/DabiZx/grupo1_DeFi/src/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
