@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'usuarios',
     'bootstrap4', 
     'contacto',
-    'templates'
 
 ]
 
