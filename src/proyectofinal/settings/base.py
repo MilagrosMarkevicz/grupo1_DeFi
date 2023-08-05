@@ -50,7 +50,9 @@ INSTALLED_APPS = [
     'publicaciones',
     'usuarios',
     'bootstrap4', 
-    'contacto'
+    'contacto',
+    'templates'
+
 ]
 
 MIDDLEWARE = [
