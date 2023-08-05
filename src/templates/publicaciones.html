@@ -79,10 +79,15 @@
                           {{post.fecha}}
                          </div>
                             <div class="card mb-3">
+                                
                                 {% if post.imagen_url %}
-                                <img src="{{ post.imagen_url }}" class="card-img-top" alt="...">
-                            {% endif %}
-                            
+                                <img src="{{ post.imagen_url }}" class="card-img-top" alt="...">  
+                                
+                                {% else %}
+                                <img src="https://i0.wp.com/criptotendencia.com/wp-content/uploads/2023/03/DeFi.jpg?resize=890%2C450&ssl=1" class="card-img-top" alt="...">
+                                {% endif %}
+                                    
+
                               <div class="card-body">
 
                             <h5 class="card-title">{{post.titulo}}</h5>
@@ -178,3 +183,12 @@
 
 
     
+        
+    
+
+
+       
+ 
+=======
+    
+>>>>>>> editar_usuarios
