@@ -26,12 +26,13 @@ from.models import Publicaciones,Comentario, Categoria
 class PostForm(forms.ModelForm):
       class Meta:
             model = Publicaciones
-            fields = ('categoria', 'titulo', 'post')
+            fields = ('categoria', 'titulo', 'post', 'imagen_url')
 
             widgets = {
                   'titulo': forms.TextInput(attrs={'class': 'form-control'}),
                   'categoria': '',
-                  'post': forms.Textarea(attrs={'class': 'form-control'}),	
+                  'post': forms.Textarea(attrs={'class': 'form-control'}),
+                  'imagen_url': forms.URLInput(attrs={'class': 'form-control'}),	
                   }
 
 

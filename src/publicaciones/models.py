@@ -23,6 +23,7 @@ class Publicaciones(models.Model):
     post = models.TextField()
     categoria = models.ForeignKey(Categoria, on_delete = models.SET_NULL, null = True, blank = True, related_name = 'posteos_categoria')
     creador = models.ForeignKey(User, on_delete=models.SET_NULL, null = True, blank = True, related_name='posteos_creador')
+    imagen_url = models.URLField(blank=True, null=True)
     
     def __str__(self):
         return self.titulo + '-' + self.creador.username
