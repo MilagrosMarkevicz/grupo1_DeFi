@@ -70,7 +70,7 @@ ROOT_URLCONF = 'proyectofinal.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': ['/home/MilagrosMarkevicz/grupo1_DeFi/src/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
