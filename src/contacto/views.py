@@ -11,7 +11,7 @@ from .forms import ContactoForm
 class Contactar(LoginRequiredMixin, CreateView):
     model = Contacto
 
-    template_name = 'pages/contact.html'
+    template_name = 'pages/contactar.html'
 
     form_class = ContactoForm
 
