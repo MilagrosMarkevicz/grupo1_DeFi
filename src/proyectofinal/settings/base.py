@@ -32,7 +32,7 @@ AUTH_USER_MODEL = 'auth.User'
 SECRET_KEY = 'django-insecure-p47_$+olajx#1uvzb1!b!j87#$_##bf@!bha_95@y%c!%@gf2u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['DabiZx.pythonanywhere.com']
 
