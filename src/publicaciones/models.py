@@ -17,8 +17,8 @@ class Categoria(models.Model):
 
 #Esta clase crea una tabla para las publicaciones
 class Publicaciones(models.Model):
-    fecha = models.DateTimeField(auto_now_add = True)
-    update = models.DateField(auto_now = True)
+    fecha = models.DateField(auto_now_add= True)
+    update = models.DateField(auto_now_add= True)
     titulo = models.CharField(max_length= 255)
     post = models.TextField()
     categoria = models.ForeignKey(Categoria, on_delete = models.SET_NULL, null = True, blank = True, related_name = 'posteos_categoria')
