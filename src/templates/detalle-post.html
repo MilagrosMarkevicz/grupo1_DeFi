@@ -10,6 +10,9 @@
                               {{post.fecha}}
                             </div>
                             <div class="card-body">
+                                {% if post.imagen_url %}
+                                <img src="{{ post.imagen_url }}" class="card-img-top" alt="...">
+                            {% endif %}
                               <h5 class="card-title">{{post.titulo}}</h5>
                               <p class="card-text">{{post.post}}</p>
                               <p class="card-text">{{post.categoria}}</p>
